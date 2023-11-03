@@ -19,65 +19,148 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+`include "defines.v"
 
 module Control_Unit(
-input [4:0] inst, 
-output reg branch, memRead, memToReg, memWrite, ALUsrc, regWrite,
-output reg [1:0] ALUop
+input [4:0] opcode, 
+output reg branch, memRead, memWrite, ALUsrc1, ALUsrc2, regWrite, PC_enable, jump,
+output reg [1:0] ALUop, memToReg
     );
     
     always @(*) begin
-        case (inst)
+        case (opcode)
         
-            5'b01100: begin // R-format
-                branch = 0;
-                memRead = 0;
-                memToReg = 0;
-                ALUop = 2'b10;
-                memWrite = 0;
-                ALUsrc = 0;
-                regWrite = 1;
-            end
+            `OPCODE_Arith_R:  // R-format
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b01;
+                            ALUop = 2'b10;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 0;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 0;
             
-            5'b00000: begin // LW
-                branch = 0;
-                memRead = 1;
-                memToReg = 1;
-                ALUop = 2'b00;
-                memWrite = 0;
-                ALUsrc = 1;
-                regWrite = 1;
-            end
+            `OPCODE_Arith_I: // I-format
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b01;
+                            ALUop = 2'b10;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 1;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 0;
             
-            5'b01000: begin // SW
-                branch = 0;
-                memRead = 0;
-                memToReg = 0;
-                ALUop = 2'b00;
-                memWrite = 1;
-                ALUsrc = 1;
-                regWrite = 0;
-            end
+            `OPCODE_Load:  // LW
+                            branch = 0;
+                            memRead = 1;
+                            memToReg = 2'b00;
+                            ALUop = 2'b00;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 1;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 0;
             
-            5'b11000: begin // BEQ
-                branch = 1;
-                memRead = 0;
-                memToReg = 0;
-                ALUop = 2'b01;
-                memWrite = 0;
-                ALUsrc = 0;
-                regWrite = 0;
-            end
+            `OPCODE_Store: // SW
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'11;
+                            ALUop = 2'b00;
+                            memWrite = 1;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 1;
+                            regWrite = 0;
+                            PC_enable = 1;
+                            jump = 0;
             
-            default: begin
-                branch = 0;
-                memRead = 0;
-                memToReg = 0;
-                ALUop = 2'b00;
-                memWrite = 0;
-                ALUsrc = 0;
-                regWrite = 0;
-            end
+            `OPCODE_Branch: // BEQ
+                            branch = 1;
+                            memRead = 0;
+                            memToReg = 2'b11;
+                            ALUop = 2'b01;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 0;
+                            regWrite = 0;
+                            PC_enable = 1;
+                            jump = 0;
+
+            `OPCODE_JALR: // JALR
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b10;
+                            ALUop = 2'b00;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 1;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 1;
+            
+            `OPCODE_JAL: // JAL
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b10;
+                            ALUop = 2'b00;
+                            memWrite = 0;
+                            ALUsrc1 = 1;
+                            ALUsrc2 = 1;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 1;
+
+            `OPCODE_AUIPC: // AUIPC
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b01;
+                            ALUop = 2'b00;
+                            memWrite = 0;
+                            ALUsrc1 = 1;
+                            ALUsrc2 = 1;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 0;
+
+            `OPCODE_LUI: // LUI
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b01;
+                            ALUop = 2'b11;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 1;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 0;
+            
+            `OPCODE_SYSTEM: // system calls
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b11;
+                            ALUop = 2'b00;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 0;
+                            regWrite = 0;
+                            PC_enable = 0;
+                            jump = 0;
+
+            default: // FENCE
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b11;
+                            ALUop = 2'b00;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 0;
+                            regWrite = 0;
+                            PC_enable = 1;
+                            jump = 0;
         
         endcase
     
