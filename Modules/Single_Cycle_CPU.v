@@ -67,7 +67,7 @@ output reg [12:0] SSD_out
     
     Nbit_register PC(.D(PCmux_out),.clk(clk),.rst(rst),.load(1'b1),.Q(PC_out) );
     nBit_shift shift(.A(gen_out),.B(shift_out));
-    InstMem instMem(.addr(PC_out[7:2]), .data_out(inst));
+    InstMem instMem(.addr(PC_out[7:0]), .data_out(inst));
     Control_Unit cu(.inst(inst[6:2]), .branch(branch), .memRead(memRead), .memToReg(memToReg), .memWrite(memWrite), .ALUsrc(ALUsrc), .regWrite(regWrite), .ALUop(ALUop));
     RegFile regFile(.read1(inst[19:15]),.read2(inst[24:20]),.write(inst[11:7]),.Write_Data(WriteMux_out),.regWrite(regWrite),.clk(clk),.rst(rst),.read_data1(read_data1),.read_data2(read_data2));
     NMUX ALUmux (.A(gen_out),.B(read_data2),.sel(ALUsrc), .OUTPUT(ALUmux_out) );
@@ -76,6 +76,6 @@ output reg [12:0] SSD_out
     immGen i_gen(.inst(inst), .gen_out(gen_out));
     ALU_CU alu_cu(.ALUop(ALUop), .inst_1(inst[14:12]), .inst_2(inst[30]), .ALU_sel(ALU_sel));
     Nbit_ALU alu(.A(read_data1), .B(ALUmux_out), .ALU_out(ALU_out), .zero_flag(zero_flag), .sel(ALU_sel));
-    DataMem dataMem(.clk(clk), .MemRead(memRead), .MemWrite(memWrite),.addr(ALU_out[7:2]), .data_in(read_data2), .data_out(data_out));
+    DataMem dataMem(.clk(clk), .MemRead(memRead), .MemWrite(memWrite),.addr(ALU_out[7:0]), .data_in(read_data2), .data_out(data_out));
     
 endmodule

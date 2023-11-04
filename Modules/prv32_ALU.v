@@ -18,7 +18,7 @@ module prv32_ALU(
     assign vf = (a[31] ^ (op_b[31]) ^ add[31] ^ cf);
     
     wire[31:0] sh;
-    shifter shifter0(.a(a), .shamt(shamt), .type(alufn[1:0]),  .r(sh)); //sent
+    Shifter shifter0(.a(a), .shamt(shamt), .type(alufn[1:0]),  .r(sh)); //sent
     
     always @ * begin
         r = 0;
@@ -33,9 +33,9 @@ module prv32_ALU(
             4'b01_01:  r = a & b;
             4'b01_11:  r = a ^ b;
             // shift
-            4'b10_00:  r=sh; //right
-            4'b10_01:  r=sh; //right arithmetic
-            4'b10_10:  r=sh; // left
+            4'b10_00:  r=sh; // right
+            4'b10_01:  r=sh; // left
+            4'b10_10:  r=sh; // right arithmetic
             // slt & sltu
             4'b11_01:  r = {31'b0,(sf != vf)}; 
             4'b11_11:  r = {31'b0,(~cf)};            	
