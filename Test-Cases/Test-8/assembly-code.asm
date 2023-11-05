@@ -1,0 +1,10 @@
+addi x1,x0,10 #x1=10
+xori x2,x1,5 #x2=15
+ori  x3,x1,5 #x3=15
+andi x4,x0,10 #x4=0
+slli x5,x1,2 #x5=40
+srli x6,x1,2 #x6=2
+addi x1, x0, -5 #x5=-5
+srai x7,x1,1 #x7=-3
+slti x8,x1,10 #x8=1
+sltiu x9,x1,10 #x9=0

@@ -1,0 +1,12 @@
+addi x1, x0, 10 #x1=10
+addi x2, x0, -5 #x2=-5
+add  x3, x1, x2 #x3=5
+sub  x4, x1, x2 #x4=15
+xor  x5, x1, x2 #x5=-15
+or   x6, x1, x2 #x6=-5
+and  x7, x1, x2 #x7=10
+sll  x8, x2, x1 #x8=-5120
+srl  x9, x2, x1 #x9=4194303
+sra  x10,x2, x1 #x10=-1
+slt  x11,x1,x2  #x11=0
+sltu x12,x1,x2  #x12=1
