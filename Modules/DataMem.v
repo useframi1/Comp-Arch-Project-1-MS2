@@ -57,7 +57,7 @@ module DataMem
             end
         endcase
     end
-    else mem[addr] <= mem[addr]  //no change
+    else mem[addr] <= mem[addr];  //no change
         
  end
  
@@ -65,12 +65,12 @@ module DataMem
     if (MemRead) begin
         case(func_3)
         0: begin //lb sign-extended
-            if(mem[addr][7]==1'b1) data_out= {24'b1, mem[addr]}; 
-            else data_out= {24'b0, mem[addr]};
+            data_out = {{24{mem[addr][7]}}, mem[addr]};
+            
         end
         1: begin //lh sign-extended
-            if(mem[addr+1][7]==1'b1) data_out= {16'b1, mem[addr+1], mem[addr]}; 
-            else data_out= {16'b0, mem[addr+1], mem[addr]};
+            data_out = {{16{mem[addr+1][7]}}, mem[addr+1], mem[addr]};
+            
         end
         2: data_out= {mem[addr+3], mem[addr+2], mem[addr+1], mem[addr]}; //lw
         4: data_out= {24'b0, mem[addr]}; //lbu zero-extended
@@ -78,7 +78,7 @@ module DataMem
         default: data_out= {mem[addr+3], mem[addr+2], mem[addr+1], mem[addr]}; //lw
         endcase
     end
-    else data_out=0; //ask?
+    else data_out=0;
  end
  
  

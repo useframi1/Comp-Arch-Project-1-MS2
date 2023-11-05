@@ -27,7 +27,7 @@ module Branch_CU (
     output reg branch_out 
 );
     always @(*) begin
-        if (branch_out) begin
+        if (branch) begin
             case (func3)
                 `BR_BEQ     :       branch_out = Z;
                 `BR_BNE     :       branch_out = ~Z;
@@ -35,7 +35,7 @@ module Branch_CU (
                 `BR_BGE     :       branch_out = S == V;
                 `BR_BLTU    :       branch_out = ~C;
                 `BR_BGEU    :       branch_out = C; 
-                default:    :       branch_out = 1'b0;
+                default     :       branch_out = 1'b0;
             endcase
         end
         else branch_out = 1'b0;

@@ -30,19 +30,7 @@ output reg [1:0] ALUop, memToReg
     always @(*) begin
         case (opcode)
         
-            `OPCODE_Arith_R:  // R-format
-                            branch = 0;
-                            memRead = 0;
-                            memToReg = 2'b01;
-                            ALUop = 2'b10;
-                            memWrite = 0;
-                            ALUsrc1 = 0;
-                            ALUsrc2 = 0;
-                            regWrite = 1;
-                            PC_enable = 1;
-                            jump = 0;
-            
-            `OPCODE_Arith_I: // I-format
+            `OPCODE_Arith_R: begin  // R-format
                             branch = 0;
                             memRead = 0;
                             memToReg = 2'b01;
@@ -53,92 +41,104 @@ output reg [1:0] ALUop, memToReg
                             regWrite = 1;
                             PC_enable = 1;
                             jump = 0;
-            
-            `OPCODE_Load:  // LW
+            end
+            `OPCODE_Arith_I: begin// I-format
+                            branch = 0;
+                            memRead = 0;
+                            memToReg = 2'b01;
+                            ALUop = 2'b10;
+                            memWrite = 0;
+                            ALUsrc1 = 0;
+                            ALUsrc2 = 0;
+                            regWrite = 1;
+                            PC_enable = 1;
+                            jump = 0;
+            end
+            `OPCODE_Load: begin // LW
                             branch = 0;
                             memRead = 1;
                             memToReg = 2'b00;
                             ALUop = 2'b00;
                             memWrite = 0;
                             ALUsrc1 = 0;
-                            ALUsrc2 = 1;
+                            ALUsrc2 = 0;
                             regWrite = 1;
                             PC_enable = 1;
                             jump = 0;
-            
-            `OPCODE_Store: // SW
+            end
+            `OPCODE_Store: begin// SW
                             branch = 0;
                             memRead = 0;
-                            memToReg = 2'11;
+                            memToReg = 2'b11;
                             ALUop = 2'b00;
                             memWrite = 1;
                             ALUsrc1 = 0;
-                            ALUsrc2 = 1;
+                            ALUsrc2 = 0;
                             regWrite = 0;
                             PC_enable = 1;
                             jump = 0;
-            
-            `OPCODE_Branch: // BEQ
+            end
+            `OPCODE_Branch: begin// BEQ
                             branch = 1;
                             memRead = 0;
                             memToReg = 2'b11;
                             ALUop = 2'b01;
                             memWrite = 0;
                             ALUsrc1 = 0;
-                            ALUsrc2 = 0;
+                            ALUsrc2 = 1;
                             regWrite = 0;
                             PC_enable = 1;
                             jump = 0;
-
-            `OPCODE_JALR: // JALR
+            end
+            `OPCODE_JALR: begin// JALR
                             branch = 0;
                             memRead = 0;
-                            memToReg = 2'b10;
+                            memToReg = 2'b11;
                             ALUop = 2'b00;
                             memWrite = 0;
                             ALUsrc1 = 0;
-                            ALUsrc2 = 1;
+                            ALUsrc2 = 0;
                             regWrite = 1;
                             PC_enable = 1;
                             jump = 1;
-            
-            `OPCODE_JAL: // JAL
+            end
+            `OPCODE_JAL: begin// JAL
                             branch = 0;
                             memRead = 0;
-                            memToReg = 2'b10;
+                            memToReg = 2'b11;
                             ALUop = 2'b00;
                             memWrite = 0;
                             ALUsrc1 = 1;
-                            ALUsrc2 = 1;
+                            ALUsrc2 = 0;
                             regWrite = 1;
                             PC_enable = 1;
                             jump = 1;
-
-            `OPCODE_AUIPC: // AUIPC
+            end
+            `OPCODE_AUIPC: begin// AUIPC
                             branch = 0;
                             memRead = 0;
                             memToReg = 2'b01;
                             ALUop = 2'b00;
                             memWrite = 0;
                             ALUsrc1 = 1;
-                            ALUsrc2 = 1;
+                            ALUsrc2 = 0;
                             regWrite = 1;
                             PC_enable = 1;
                             jump = 0;
-
-            `OPCODE_LUI: // LUI
+            end
+            `OPCODE_LUI: begin// LUI
                             branch = 0;
                             memRead = 0;
                             memToReg = 2'b01;
                             ALUop = 2'b11;
                             memWrite = 0;
                             ALUsrc1 = 0;
-                            ALUsrc2 = 1;
+                            ALUsrc2 = 0;
                             regWrite = 1;
                             PC_enable = 1;
                             jump = 0;
-            
-            `OPCODE_SYSTEM: // system calls
+            end
+            `OPCODE_SYSTEM: begin // system calls
                             branch = 0;
                             memRead = 0;
                             memToReg = 2'b11;
@@ -149,8 +149,8 @@ output reg [1:0] ALUop, memToReg
                             regWrite = 0;
                             PC_enable = 0;
                             jump = 0;
-
-            default: // FENCE
+            end
+            default: begin// FENCE
                             branch = 0;
                             memRead = 0;
                             memToReg = 2'b11;
@@ -161,7 +161,7 @@ output reg [1:0] ALUop, memToReg
                             regWrite = 0;
                             PC_enable = 1;
                             jump = 0;
-        
+            end
         endcase
     
     end
