@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
 // 
 // Create Date: 09/19/2023 05:10:50 PM
 // Design Name: 
 // Module Name: DFF
-// Project Name: 
+// Project Name: Single Cycle rv32i Processor
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: D flip-flop
 // 
 // Dependencies: 
 // 
@@ -26,11 +26,12 @@ module DFF (
     input D, 
     output reg Q
 );
-    always @ (posedge clk or posedge rst)
+    always @ (posedge clk or posedge rst) begin
         if (rst) begin
-        Q <= 1'b0;
-    end 
-    else begin
-         Q <= D;
+            Q <= 1'b0;
+        end 
+        else begin
+            Q <= D;
+        end
     end
 endmodule

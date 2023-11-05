@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
 // 
-// Create Date: 09/19/2023 05:54:32 PM
+// Create Date: 11/03/2023 05:04:12 PM
 // Design Name: 
 // Module Name: MUX2X1
-// Project Name: 
+// Project Name: Single Cycle rv32i Processor
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: a 1-bit 2x1 MUX
 // 
 // Dependencies: 
 // 
@@ -21,10 +21,10 @@
 
 
 module MUX2X1(
-input A,
-input B,
-input sel,
-output OUT
-    );
+    input A,
+    input B,
+    input sel,
+    output OUT
+);
    assign OUT=(sel==1)?B:A;
 endmodule

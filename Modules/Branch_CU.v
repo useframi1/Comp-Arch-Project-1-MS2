@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
 // 
 // Create Date: 11/03/2023 06:56:23 PM
 // Design Name: 
 // Module Name: Branch_CU
-// Project Name: 
+// Project Name: Single Cycle rv32i Processor
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: The branch control unit
 // 
 // Dependencies: 
 // 

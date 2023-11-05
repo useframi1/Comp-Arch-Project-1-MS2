@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
 // 
-// Create Date: 09/26/2023 06:53:28 PM
+// Create Date: 11/03/2023 06:53:28 PM
 // Design Name: 
 // Module Name: ALU_CU
-// Project Name: 
+// Project Name: Single Cycle rv32i Processor
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: The ALU control unit
 // 
 // Dependencies: 
 // 

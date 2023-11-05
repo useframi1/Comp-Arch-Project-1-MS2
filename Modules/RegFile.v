@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
 // 
-// Create Date: 09/26/2023 05:50:05 PM
+// Create Date: 11/03/2023 05:04:12 PM
 // Design Name: 
 // Module Name: RegFile
-// Project Name: 
+// Project Name: Single Cycle rv32i Processor
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: The 32x32 register file of the processor
 // 
 // Dependencies: 
 // 

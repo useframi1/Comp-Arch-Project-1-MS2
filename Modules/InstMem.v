@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
 // 
-// Create Date: 10/03/2023 04:53:04 PM
+// Create Date: 11/03/2023 05:04:12 PM
 // Design Name: 
 // Module Name: InstMem
-// Project Name: 
+// Project Name: Single Cycle rv32i Processor
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: the instruction memory of the processor
 // 
 // Dependencies: 
 // 

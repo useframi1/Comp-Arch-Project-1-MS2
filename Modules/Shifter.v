@@ -1,3 +1,23 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
+// 
+// Create Date: 11/03/2023 05:04:12 PM
+// Design Name: 
+// Module Name: Shifter
+// Project Name: Single Cycle rv32i Processor
+// Target Devices: 
+// Tool Versions: 
+// Description: shifter module that executes the shift operatiosn of the ALU
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
 module Shifter(
     input wire signed  [31:0] a,

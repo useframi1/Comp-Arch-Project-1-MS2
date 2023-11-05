@@ -1,3 +1,24 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
+// 
+// Create Date: 11/03/2023 05:04:12 PM
+// Design Name: 
+// Module Name: prv32_ALU
+// Project Name: Single Cycle rv32i Processor
+// Target Devices: 
+// Tool Versions: 
+// Description: The 32-bit ALU of the processor
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
 module prv32_ALU(
 	input [31:0] a,
 	input [31:0] b,

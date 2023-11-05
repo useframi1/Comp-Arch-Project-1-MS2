@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
 // 
-// Create Date: 11/04/2023 04:33:21 PM
+// Create Date: 11/03/2023 05:04:12 PM
 // Design Name: 
 // Module Name: Single_Cycle_CPU_tb
-// Project Name: 
+// Project Name: Single Cycle rv32i Processor
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: testbench
 // 
 // Dependencies: 
 // 
@@ -20,9 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Single_Cycle_CPU_tb(
-
-    );
+module Single_Cycle_CPU_tb();
     
     reg clk, rst;
     

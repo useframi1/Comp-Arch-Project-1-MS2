@@ -1,3 +1,25 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: AUC
+// Engineer: Mariam ElGhobary & Youssef Elhagg
+// 
+// Create Date: 11/03/2023 05:04:12 PM
+// Design Name: 
+// Module Name: ImmGen
+// Project Name: Single Cycle rv32i Processor
+// Target Devices: 
+// Tool Versions: 
+// Description: the immediate generator
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
 `include "defines.v"
 
 module ImmGen (
