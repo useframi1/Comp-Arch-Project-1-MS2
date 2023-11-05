@@ -21,31 +21,54 @@
 
 
 module Single_Cycle_CPU(
-input clk, rst, 
-input [1:0] ledSel,
-input [3:0] SSD_sel,
-output reg [15:0] LED_out,
-output reg [12:0] SSD_out
-    );
-    wire [31:0] shift_out;
-    wire [31:0] inst,PC_out, next_PC, branch_target_addr;
-    wire branch, memRead, memWrite, ALU_src1, ALU_src2, regWrite, PC_enable, jump;
+    input clk, 
+    input rst, 
+    input [1:0] ledSel,
+    input [3:0] SSD_sel,
+    output reg [15:0] LED_out,
+    output reg [12:0] SSD_out
+);
+
+    wire [31:0] inst;
+    wire [31:0] PC_out;
+    wire [31:0] next_PC;
+    wire [31:0] branch_target_addr;
+    wire branch;
+    wire memRead;
+    wire memWrite;
+    wire ALU_src1;
+    wire ALU_src2;
+    wire regWrite;
+    wire PC_enable;
+    wire jump;
     wire [1:0] ALUop, memToReg;
-    wire [31:0] read_data1, read_data2;
+    wire [31:0] read_data1;
+    wire [31:0] read_data2;
     wire [31:0] gen_out;
-    wire [31:0] ALU_in1, ALU_in2,write_mux_out1, write_mux_out2,PCmux_out;
+    wire [31:0] ALU_in1;
+    wire [31:0] ALU_in2;
+    wire [31:0] write_mux_out1;
+    wire [31:0] write_mux_out2;
+    wire [31:0] PCmux_out;
     wire [3:0] ALU_sel;
     wire [31:0] ALU_out;
-    wire z, c, s, v;
+    wire z;
+    wire s;
+    wire c;
+    wire v;
     wire [31:0] data_out;
     wire ALU_cu_mux_sel;
     wire [4:0] opcode;
     wire [2:0] func3;
-    wire func7, func7_out;
-    wire [4:0] rs1, rs2, rd;
+    wire func7;
+    wire func7_out;
+    wire [4:0] rs1;
+    wire [4:0] rs2;
+    wire [4:0] rd;
     wire [31:0] branch_mux_out;
     wire PC_load;
-    wire [7:0] inst_mem_addr, data_mem_addr;
+    wire [7:0] inst_mem_addr;
+    wire [7:0] data_mem_addr;
     wire [4:0] shamt;
     
     assign next_PC = PC_out + 4;
@@ -97,7 +120,6 @@ output reg [12:0] SSD_out
     NMUX PCmux (.A(branch_mux_out),.B(ALU_out),.sel(jump), .OUTPUT(PCmux_out));
     
     Nbit_register PC(.D(PCmux_out),.clk(clk),.rst(rst),.load(PC_load),.Q(PC_out));
-    nBit_shift shift(.A(gen_out),.B(shift_out));
     InstMem instMem(.addr(inst_mem_addr), .data_out(inst));
     RegFile regFile(.read1(rs1),.read2(rs2),.write(rd),.Write_Data(write_mux_out2),.regWrite(regWrite),.clk(clk),.rst(rst),.read_data1(read_data1),.read_data2(read_data2));
     DataMem dataMem(.clk(clk), .MemRead(memRead), .MemWrite(memWrite),.addr(data_mem_addr), .data_in(read_data2), .func_3(func3), .data_out(data_out));

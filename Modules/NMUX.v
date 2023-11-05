@@ -21,7 +21,8 @@
 
 
 module NMUX #(parameter n=32)(
-input [n-1:0] A,B,
+input [n-1:0] A,
+input [n-1:0] B,
 input sel,
 output [n-1:0] OUTPUT 
     );

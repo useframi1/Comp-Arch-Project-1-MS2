@@ -21,7 +21,9 @@
 
 
 module MUX2X1(
-input A,B,sel,
+input A,
+input B,
+input sel,
 output OUT
     );
    assign OUT=(sel==1)?B:A;

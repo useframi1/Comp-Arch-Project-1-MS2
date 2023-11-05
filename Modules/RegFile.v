@@ -20,11 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module RegFile #(parameter n = 32)( input [4:0] read1,read2,write,
-input [n-1:0] Write_Data,
-input regWrite,clk,rst,
-output [n-1:0] read_data1,read_data2
-    );
+module RegFile #(parameter n = 32)(
+    input [4:0] read1,
+    input [4:0] read2,
+    input [4:0] write,
+    input [n-1:0] Write_Data,
+    input regWrite,
+    input clk,
+    input rst,
+    output [n-1:0] read_data1,
+    output [n-1:0] read_data2
+);
     reg [n-1:0] regfile [31:0];
     integer i;
     

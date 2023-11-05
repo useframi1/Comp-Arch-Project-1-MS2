@@ -22,10 +22,17 @@
 `include "defines.v"
 
 module Control_Unit(
-input [4:0] opcode, 
-output reg branch, memRead, memWrite, ALUsrc1, ALUsrc2, regWrite, PC_enable, jump,
-output reg [1:0] ALUop, memToReg
-    );
+    input [4:0] opcode, 
+    output reg branch, 
+    output reg memRead,
+    output reg memWrite,
+    output reg ALUsrc1,
+    output reg ALUsrc2,
+    output reg regWrite,
+    output reg PC_enable,
+    output reg jump,
+    output reg [1:0] ALUop, memToReg
+);
     
     always @(*) begin
         case (opcode)

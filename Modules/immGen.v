@@ -1,7 +1,7 @@
 `include "defines.v"
 
 module ImmGen (
-    input  wire [31:0]  IR,
+    input [31:0]  IR,
     output reg  [31:0]  Imm
 );
 

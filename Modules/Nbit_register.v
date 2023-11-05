@@ -22,7 +22,9 @@
 
 module Nbit_register #(parameter n=32)(
 input [n-1:0] D,
-input clk,rst,load,
+input clk,
+input rst,
+input load,
 output [n-1:0]Q
     );
     wire X[n-1:0];

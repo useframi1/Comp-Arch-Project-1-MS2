@@ -22,7 +22,11 @@
 `include "defines.v"
 
 module Branch_CU (
-    input branch, Z, C, S, V,
+    input branch,
+    input Z,
+    input C,
+    input S,
+    input V,
     input [2:0] func3,
     output reg branch_out 
 );

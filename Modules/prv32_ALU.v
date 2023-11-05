@@ -1,13 +1,20 @@
 module prv32_ALU(
-	input   wire [31:0] a, b,
-	input   wire [4:0]  shamt,
-	output  reg  [31:0] r,
-	output  wire        cf, zf, vf, sf,
-	input   wire [3:0]  alufn
+	input [31:0] a,
+	input [31:0] b,
+	input [4:0] shamt,
+	input [3:0] alufn,
+	output reg [31:0] r,
+	output cf, 
+	output zf, 
+	output vf, 
+	output sf
 );
 
-    wire [31:0] add, sub, op_b;
-    wire cfa, cfs;
+    wire [31:0] add;
+    wire [31:0] sub;
+    wire [31:0] op_b;
+    wire cfa;
+    wire cfs;
     
     assign op_b = (~b);
     

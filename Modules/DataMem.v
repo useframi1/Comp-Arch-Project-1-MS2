@@ -20,9 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module DataMem
- (input clk, input MemRead, input MemWrite,
- input [7:0] addr, input [31:0] data_in, input [2:0] func_3, output reg [31:0] data_out);
+module DataMem (
+    input clk, 
+    input MemRead, 
+    input MemWrite,
+    input [7:0] addr, 
+    input [31:0] data_in, 
+    input [2:0] func_3, 
+    output reg [31:0] data_out
+ );
  
  reg [7:0] mem [0:255];
  initial begin
